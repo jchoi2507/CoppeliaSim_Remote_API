@@ -6,6 +6,7 @@
 import sim
 import matplotlib.pyplot
 import numpy as np
+import sys
 
 sim.simxFinish(-1) # Ends any existing communication threads
 clientID = sim.simxStart('127.0.0.1', 19999, True, True, 5000, 5) # Parameters: Server IP, Port #,
@@ -19,6 +20,7 @@ def connection_message(x):
         print("Connected to remote API server")
     else:
         print("Connection unsuccessful :(")
+        sys.exit()
 
 connection_message(clientID)
 

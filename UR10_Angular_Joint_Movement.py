@@ -7,6 +7,7 @@ import sim
 import matplotlib.pyplot
 import numpy as np
 import time
+import sys
 
 sim.simxFinish(-1) # Ends any existing communication threads
 clientID = sim.simxStart('127.0.0.1', 19999, True, True, 5000, 5) # Parameters: Server IP, Port #,
@@ -49,7 +50,7 @@ PI = np.pi
 
 # Initializing + Calling Functions
 joint_handle_array = [] # List of joint handles
-joint_targetpos_array = [] # Target positions (to be modified)
+joint_targetpos_array = [] # Target positions
 
 # Initializes joint_handle_array with actual handle values -- RUN ONCE
 def handle_array():
@@ -60,20 +61,41 @@ def handle_array():
 # Initializes joint_targetpos_array with actual target position values -- RUN EVERY TIME AFTER MOVING
 def targetpos_array():
     for i in range(6):
-        k = input("Enter angle in degrees of joint" + str(i + 1) + " 's rotation")
-        k2 = float(k) * float(PI/180)
-        joint_targetpos_array.append(k2)
+        k = input("Enter angle in degrees of joint " + str(i + 1) + "'s rotation ('quit'/'reset')")
+        if k == "quit":
+            return "quit"
+            break
+        elif k == "reset":
+            return "reset"
+            break
+        else:
+            k2 = float(k) * float(PI/180)
+            joint_targetpos_array.append(k2)
 
 # Signalling simulation to actually perform the changes
 def move():
     for i in range(6):
         sim.simxSetJointTargetPosition(clientID, joint_handle_array[i], joint_targetpos_array[i], sim.simx_opmode_blocking)
         time.sleep(2)
-    joint_targetpos_array = []
 
 # Function that brings the UR10 arm back to its original place
 def reset():
     for i in range(6):
         sim.simxSetJointTargetPosition(clientID, joint_handle_array[i], 0, sim.simx_opmode_blocking)
         time.sleep(2)
-    joint_targetpos_array = []
+
+# Looping the script
+handle_array()
+while True:
+    a = targetpos_array()
+    if a == "quit":
+        joint_targetpos_array.clear()
+        joint_handle_array.clear()
+        break
+    elif a == "reset":
+        reset()
+        joint_targetpos_array.clear()
+    else:
+        move()
+        joint_targetpos_array.clear()
+    print("\n")

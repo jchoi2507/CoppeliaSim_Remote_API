@@ -21,6 +21,7 @@ def connection_message(x):
         print("Connected to remote API server")
     else:
         print("Connection unsuccessful :(")
+        sys.exit()
 
 connection_message(clientID)
 

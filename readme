@@ -6,3 +6,5 @@ sensor has been set up in Coppelia)
 The code for the UR10 robotic arm is able to control each joint of the robotic arm, based on user input (in degrees that is later converted to radians). The .py script is executable
 in any terminal program.
 A linear control system (using x,y,z coordinates instead of angles) is coming soon.
+
+**SIMULATIONS IN COPPELIA MUST ALREADY BE RUNNING FOR REMOTE API CONNECTION TO WORK**

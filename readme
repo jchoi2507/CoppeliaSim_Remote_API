@@ -8,3 +8,4 @@ in any terminal program.
 A linear control system (using x,y,z coordinates instead of angles) is coming soon.
 
 **SIMULATIONS IN COPPELIA MUST ALREADY BE RUNNING FOR REMOTE API CONNECTION TO WORK**
+**sim.py, simConst.py, rempoteApi.dll must all be in workspace directory**

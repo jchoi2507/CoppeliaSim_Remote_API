@@ -1,4 +1,8 @@
-  ## PIONEER p3dx ##
+ **LEGACY REMOTE API (not to be confused with b0 Remote API) commands were used**
+**SIMULATIONS IN COPPELIA MUST ALREADY BE RUNNING FOR REMOTE API CONNECTION TO WORK**
+**sim.py, simConst.py, rempoteApi.dll must all be in workspace directory**
+ 
+ ## PIONEER p3dx ##
 The code for the Pioneer p3dx is able to control the speed of the left and right motors, utilize the ultrasonic sensors, and capture images (given that a vision
 sensor has been set up in Coppelia)
 
@@ -6,9 +10,9 @@ sensor has been set up in Coppelia)
 The code for the UR10 robotic arm is able to control each joint of the robotic arm, based on user input (in degrees that is later converted to radians). The .py script is executable
 in any terminal program.
 
-The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. Inverse kinematics was utilized. It should be
-noted that version 4.1 (instead of the current 4.2) was installed, as the inverse kinematics features were disabled in 4.2. You can install older versions of CoppeliaSim online.
-The scene file that I used is attached to the repository as a .ttt file.
+The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. The .py script is executable in any terminal program.
 
-**SIMULATIONS IN COPPELIA MUST ALREADY BE RUNNING FOR REMOTE API CONNECTION TO WORK**
-**sim.py, simConst.py, rempoteApi.dll must all be in workspace directory**
+A few notes about the linear version:
+- Use Coppelia 4.1--the current 4.2 version doesn't support tip-target inverse kinematics, so an older version was used (older versions of CoppeliaSim can be installed online)
+- The scene file (version 4.1) that I used is attached in the repository as a .ttt file--trying to run the angular version will likely cause an error as that code is for 4.2
+- For the alpha, beta, gamma inputs in the linear version, set all of them equal to zero

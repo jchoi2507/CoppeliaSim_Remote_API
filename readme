@@ -5,7 +5,10 @@ sensor has been set up in Coppelia)
   ## UR10 robotic arm ##
 The code for the UR10 robotic arm is able to control each joint of the robotic arm, based on user input (in degrees that is later converted to radians). The .py script is executable
 in any terminal program.
-A linear control system (using x,y,z coordinates instead of angles) is coming soon.
+
+The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. Inverse kinematics was utilized. It should be
+noted that version 4.1 (instead of the current 4.2) was installed, as the inverse kinematics features were disabled in 4.2. You can install older versions of CoppeliaSim online.
+The scene file that I used is attached to the repository as a .ttt file.
 
 **SIMULATIONS IN COPPELIA MUST ALREADY BE RUNNING FOR REMOTE API CONNECTION TO WORK**
 **sim.py, simConst.py, rempoteApi.dll must all be in workspace directory**

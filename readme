@@ -16,3 +16,6 @@ A few notes about the linear version:
 - Use Coppelia 4.1--the current 4.2 version doesn't support tip-target inverse kinematics, so an older version was used (older versions of CoppeliaSim can be installed online)
 - The scene file (version 4.1) that I used is attached in the repository as a .ttt file--trying to run the angular version will likely cause an error as that code is for 4.2
 - For the alpha, beta, gamma inputs in the linear version, set all of them equal to zero
+
+## UR5 robotic arm ##
+Pick and place script coming soon

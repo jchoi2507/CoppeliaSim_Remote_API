@@ -18,5 +18,5 @@ A few notes about the linear version:
 - For the alpha, beta, gamma inputs in the linear version, set all of them equal to zero
 
 ## UR5 robotic arm ##
-There are two pick and place scripts: one is for dynamic, respondable cuboids. The second is for static, non-respondable deep fry baskets. In both cases, 'gripping' was emulated
+There are two pick and place scripts: one is for dynamic, respondable cuboids (UR5_Pick_And_Place_4_1.py). The second is for static, non-respondable deep fry baskets (UR5PickPlaceSimulation.py). In both cases, 'gripping' was emulated
 and not actually performed. The UR5_Pick_And_Place_4_1.py has an associated scene, UR5_Cuboids.ttt. The UR5PickPlaceSimulation.py has an associated scene, UR5PICKANDPLACESCENE.ttt

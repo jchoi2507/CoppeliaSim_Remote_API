@@ -10,7 +10,8 @@ sensor has been set up in Coppelia).
 The code for the UR10 robotic arm is able to control each joint of the robotic arm, based on user input (in degrees that is later converted to radians). The .py script is executable
 in any terminal program.
 
-The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. The .py script is executable in any terminal program.
+The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. 
+Inverse kinematics with tip and target tracing was used. The .py script is executable in any terminal program.
 
 A few notes about the linear version:
 - Use Coppelia 4.1--the current 4.2 version doesn't support tip-target inverse kinematics, so an older version was used (older versions of CoppeliaSim can be installed online)

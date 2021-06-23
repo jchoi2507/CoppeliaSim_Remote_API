@@ -43,6 +43,8 @@
 
                             #####################################################
 
+                ## Remote API connection ##
+
 import sim
 import matplotlib.pyplot
 import numpy as np
@@ -63,6 +65,8 @@ def connection_message(x):
         sys.exit()
 
 connection_message(clientID)
+
+                ## Gripper functions ##
 
 PI = np.pi
 
@@ -104,6 +108,8 @@ def openGripperAtStart(clientid, j1, j2, p1, p2):
     else:
         sim.simxSetJointTargetVelocity(clientid, j1, 0.2, sim.simx_opmode_oneshot)
         sim.simxSetJointTargetVelocity(clientid, j2, 0.4, sim.simx_opmode_oneshot)
+
+                ## Move_L function
 
 # Same exact move_L function as in the linear joint movement script for the UR10, basically sets coordinates
 # for the target dummy. IK will then make the tip dummy (that is attached to the flange) to follow the target dummy
@@ -162,7 +168,9 @@ def move_L(clientid, target, target_pos, speed):
     delta_pos.clear()
     intermediate_pos.clear()
 
-# Initializing
+                ## Initializing
+
+# Obtaining appropriate handles
 errorCode, target = sim.simxGetObjectHandle(clientID, 'target', sim.simx_opmode_blocking)
 errorCode, j1 = sim.simxGetObjectHandle(clientID, 'ROBOTIQ_85_active1', sim.simx_opmode_blocking)
 errorCode, j2 = sim.simxGetObjectHandle(clientID, 'ROBOTIQ_85_active2', sim.simx_opmode_blocking)
@@ -193,96 +201,98 @@ errorCode, basket1 = sim.simxGetObjectHandle(clientID, 'basket1', sim.simx_opmod
 errorCode, basket2 = sim.simxGetObjectHandle(clientID, 'basket2', sim.simx_opmode_blocking)
 errorCode, connector = sim.simxGetObjectHandle(clientID, 'ROBOTIQ_85_attachPoint', sim.simx_opmode_blocking)
 
-# Functions that perform the movements of the cuboids/baskets
-def moveBasket1():
+                ## Basket-moving functions
 
-    # Moving to initial position
-    move_L(clientID, target, b1_initial_pos, 2)
-    time.sleep(3)
-    sim.simxSetObjectParent(clientID, basket1, connector, True, sim.simx_opmode_blocking)
+# Function that perform the movements of the cuboids/baskets
+def moveBasket(clientid, basket_number, j1, j2, p1, p2):
 
-    # Closing gripper
-    gripper_function(clientID, 1, j1, j2, p1, p2)
-    time.sleep(0.85)
-    pause_gripper(clientID, j1, j2)
-    time.sleep(1)
+    if basket_number == 1:
+        # Moving to initial position
+        move_L(clientid, target, b1_initial_pos, 2)
+        time.sleep(3)
+        sim.simxSetObjectParent(clientid, basket1, connector, True, sim.simx_opmode_blocking)
 
-    # Moving object to second table
-    move_L(clientID, target, b1_int_pos, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_2, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_3, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_4, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_5, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_final_pos, 2)
-    time.sleep(1)
-    sim.simxSetObjectParent(clientID, basket1, -1, True, sim.simx_opmode_blocking)
-    gripper_function(clientID, 0, j1, j2, p1, p2)
+        # Closing gripper
+        gripper_function(clientid, 1, j1, j2, p1, p2)
+        time.sleep(0.8)
+        pause_gripper(clientid, j1, j2)
+        time.sleep(1)
 
-    # Moving robotic arm back to first table, ready to move basket #2
-    #move_L(clientID, target, b1_final_pos_2, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_5, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_4, 2)
-    time.sleep(1)
-    move_L(clientID, target, b1_int_pos_3, 2)
-    time.sleep(1)
+        # Moving object to second table
+        move_L(clientid, target, b1_int_pos, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_2, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_3, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_final_pos, 2)
+        time.sleep(1)
+        sim.simxSetObjectParent(clientid, basket1, -1, True, sim.simx_opmode_blocking)
+        gripper_function(clientid, 0, j1, j2, p1, p2)
 
-def moveBasket2():
+        # Moving robotic arm back to first table, ready to move basket #2
+        # move_L(clientID, target, b1_final_pos_2, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_3, 2)
+        time.sleep(1)
 
-    # Moving to initial position
-    move_L(clientID, target, b2_initial_pos, 2)
-    time.sleep(2)
-    sim.simxSetObjectParent(clientID, basket2, connector, True, sim.simx_opmode_blocking)
+    elif basket_number == 2:
+        # Moving to initial position
+        move_L(clientid, target, b2_initial_pos, 2)
+        time.sleep(2)
+        sim.simxSetObjectParent(clientid, basket2, connector, True, sim.simx_opmode_blocking)
 
-    # Closing gripper
-    gripper_function(clientID, 1, j1, j2, p1, p2)
-    time.sleep(0.85)
-    pause_gripper(clientID, j1, j2)
-    time.sleep(2)
+        # Closing gripper
+        gripper_function(clientid, 1, j1, j2, p1, p2)
+        time.sleep(0.8)
+        pause_gripper(clientid, j1, j2)
+        time.sleep(2)
 
-    # Moving object to second table
-    move_L(clientID, target, b2_int_pos, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_2, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_3, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_4, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_5, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_final_pos, 2)
-    time.sleep(1)
-    sim.simxSetObjectParent(clientID, basket2, -1, True, sim.simx_opmode_blocking)
-    gripper_function(clientID, 0, j1, j2, p1, p2)
+        # Moving object to second table
+        move_L(clientid, target, b2_int_pos, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_2, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_3, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_final_pos, 2)
+        time.sleep(1)
+        sim.simxSetObjectParent(clientid, basket2, -1, True, sim.simx_opmode_blocking)
+        gripper_function(clientid, 0, j1, j2, p1, p2)
 
-    # Moving robotic arm back to original position
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_5, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_4, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_3, 2)
-    time.sleep(1)
-    move_L(clientID, target, b2_int_pos_2, 2)
-    time.sleep(2)
+        # Moving robotic arm back to original position
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_3, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_2, 2)
+        time.sleep(2)
 
-def shakeBasket(clientid, basket_number, b1_int_pos_3, b2_int_pos_3, b1_final_pos, b2_final_pos, j1, j2, p1, p2):
+def shakeBasket(clientid, basket_number, j1, j2, p1, p2):
     b1_back_pos = [-1.6, 0.81, 0.52, 0, 0, 0]
     b2_back_pos = [-1.6, 0.97, 0.52, 0, 0, 0]
 
     if basket_number == 1:
         move_L(clientid, target, b1_final_pos, 2)
-        time.sleep(2)
+        time.sleep(3)
         sim.simxSetObjectParent(clientID, basket1, connector, True, sim.simx_opmode_blocking)
         gripper_function(clientid, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.8)
         pause_gripper(clientid, j1, j2)
         time.sleep(1)
 
@@ -296,7 +306,7 @@ def shakeBasket(clientid, basket_number, b1_int_pos_3, b2_int_pos_3, b1_final_po
         time.sleep(2)
         sim.simxSetObjectParent(clientID, basket2, connector, True, sim.simx_opmode_blocking)
         gripper_function(clientid, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.8)
         pause_gripper(clientid, j1, j2)
         time.sleep(1)
 
@@ -311,12 +321,73 @@ def shakeBasket(clientid, basket_number, b1_int_pos_3, b2_int_pos_3, b1_final_po
     gripper_function(clientid, 0, j1, j2, p1, p2)
     time.sleep(2)
 
-# Actually running the program
+def moveBack(clientid, basket_number, j1, j2, p1, p2):
+
+    b1_return_pos = [-1.725, 0.4, 0.552, 0, 0, 0]
+    b2_return_pos = [-1.725, 0.6, 0.552, 0, 0, 0]
+
+    if basket_number == 1:
+        move_L(clientid, target, b1_final_pos, 2)
+        time.sleep(1.5)
+        sim.simxSetObjectParent(clientid, basket1, connector, True, sim.simx_opmode_blocking)
+        time.sleep(1)
+        gripper_function(clientid, 1, j1, j2, p1, p2)
+        time.sleep(0.8)
+        pause_gripper(clientid, j1, j2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_3, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos_2, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_int_pos, 2)
+        time.sleep(1)
+        move_L(clientid, target, b1_return_pos, 2)
+        time.sleep(2)
+        sim.simxSetObjectParent(clientid, basket1, -1, True, sim.simx_opmode_blocking)
+        time.sleep(1)
+        gripper_function(clientid, 0, j1, j2, p1, p2)
+        time.sleep(1)
+
+    elif basket_number == 2:
+        move_L(clientid, target, b2_final_pos, 2)
+        time.sleep(4)
+        sim.simxSetObjectParent(clientid, basket2, connector, True, sim.simx_opmode_blocking)
+        time.sleep(1.5)
+        gripper_function(clientid, 1, j1, j2, p1, p2)
+        time.sleep(0.8)
+        pause_gripper(clientid, j1, j2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_5, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_4, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_3, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos_2, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_int_pos, 2)
+        time.sleep(1)
+        move_L(clientid, target, b2_return_pos, 2)
+        time.sleep(2)
+        sim.simxSetObjectParent(clientid, basket2, -1, True, sim.simx_opmode_blocking)
+        time.sleep(1)
+        gripper_function(clientid, 0, j1, j2, p1, p2)
+        time.sleep(1)
+
+                ## Program execution
+
 openGripperAtStart(clientID, j1, j2, p1, p2) # Opening the gripper at the beginning of simulation
 time.sleep(2)
-moveBasket1() # Moving basket 1 to table 2
-moveBasket2() # Moving basket 2 to table 2
 
-# Shaking basket 1 and then basket 2
-shakeBasket(clientID, 1, b1_int_pos_3, b2_int_pos_3, b1_final_pos, b2_final_pos, j1, j2, p1, p2)
-shakeBasket(clientID, 2, b1_int_pos_3, b2_int_pos_3, b1_final_pos, b2_final_pos, j1, j2, p1, p2)
+moveBasket(clientID, 1, j1, j2, p1, p2) # Moving basket 1 to table
+moveBasket(clientID, 2, j1, j2, p1, p2) # Moving basket 2 to table
+
+shakeBasket(clientID, 1, j1, j2, p1, p2) # Shaking basket 1
+shakeBasket(clientID, 2, j1, j2, p1, p2) # Shaking basket 2
+
+moveBack(clientID, 1, j1, j2, p1, p2)
+moveBack(clientID, 2, j1, j2, p1, p2)

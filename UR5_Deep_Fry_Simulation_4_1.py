@@ -3,46 +3,6 @@
 # To include in lua script in Coppelia software:
 # simRemoteApi.start(19999)
 
-                                            ## Settings Tutorial ##
-
-# For any confusion on:
-
-    # Function parameters: https://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm#
-    # Understanding dynamic simulations: https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm
-    # Remote API connection: https://youtu.be/SQont-mTnfM?t=982
-        # 'vrep' is the same as 'sim'
-    # The move_L function: https://youtu.be/CVoV08T0Aqo?t=948
-        # The code below is basically a Python version of his MATLAB code
-
-# Important notes about UR5_Deep_Fry_Simulation_4_1.py:
-
-    # Coppelia 4.1 should be installed, not the current version of 4.2. This is due to the current version not
-    # supporting tip&target inverse kinematic control through remote API
-
-    # The basket objects are STATIC, non-respondable bodies--in other words, the gripper
-    # isn't actually 'gripping' them, they are floating alongside the gripper, emulating
-    # an actual gripper (for gripping dynamic, respondable bodies, refer to: UR5_Pick_And_Place_4_1.py
-    # in the repository).
-
-    # Sphere object is there purely for the purpose of having the above simRemoteApi.start(19999) in its child script;
-    # without that command somewhere in the scene, remote API connection is not possible. The command is not included in the
-    # child script of the actual robotic arm for the sake of disabling the object's entire child script.
-
-    # Two dummies, 'tip' and 'target'; 'tip' is a child object of the last object of the UR5 in the model hierarchy
-    # 'tip' and 'target' are linked in the IK-tip-to-target mode, with an IK group + element established.
-    # The 'tip' dummy has to be placed at the flange of the robotic arm, whereas the 'target' dummy can be anywhere.
-    # Once simulation runs, the robotic arm should theoretically follow the 'target' dummy through IK calculations.
-    # However, do be careful of positioning the target, it should be somewhere within the robot arm's reach (not too far
-    # away but also not too close to avoid singularity issues)
-
-    # All joints in the UR5 robotic arm are set to inverse kinematics mode + hybrid operation enabled.
-
-    # The gripper is the child object of the UR5_connection object. Contrary to online tutorials, the gripper can
-    # remain dynamically ENABLED as long as it's connected to the correct object. See:
-    # https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm
-
-                            #####################################################
-
                 ## Remote API connection ##
 
 import sim

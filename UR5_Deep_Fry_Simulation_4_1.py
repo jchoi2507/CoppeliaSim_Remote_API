@@ -68,11 +68,6 @@ connection_message(clientID)
 
                 ## Gripper functions ##
 
-from functools import partial
-from tkinter import *
-root = Tk()
-PI = np.pi
-
 # Gripper function that opens/closes the gripper
 def gripper_function(clientid, closing, j1, j2, p1, p2):
     errorCode, p1 = sim.simxGetJointPosition(clientid, j1, sim.simx_opmode_buffer)
@@ -114,6 +109,8 @@ def openGripperAtStart(clientid, j1, j2, p1, p2):
 
                 ## Move_L function
 
+PI = np.pi
+
 # Same exact move_L function as in the linear joint movement script for the UR10, basically sets coordinates
 # for the target dummy. IK will then make the tip dummy (that is attached to the flange) to follow the target dummy
 def move_L(clientid, target, target_pos, speed):
@@ -134,7 +131,6 @@ def move_L(clientid, target, target_pos, speed):
     delta_orient = []
     intermediate_pos = [0, 0, 0]
     intermediate_orient = [0, 0, 0]
-    # target_pos = [1.5, 2, 5] ## TEST
 
     for i in range(3):
         if abs(target_pos[i + 3]) - orient[i] > PI and orient[i] < 0:
@@ -189,8 +185,6 @@ b1_int_pos_4 = [-1.475, 0.81, 0.725, 0, 0, 0]
 b1_int_pos_5 = [-1.56, 0.81, 0.725, 0, 0, 0]
 b1_final_pos = [-1.56, 0.81, 0.52, 0, 0, 0]
 
-b1_b2_transition_pos = [-1.85, 0.55, 0.6, 0, 0, 0]
-
 # Coordinates for basket 2
 b2_initial_pos = [-1.725, 0.6, 0.55, 0, 0, 0]
 b2_int_pos = [-1.675, 0.6, 0.725, 0, 0, 0]
@@ -217,7 +211,7 @@ def moveBasket(basket_number):
 
         # Closing gripper
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(1)
 
@@ -238,7 +232,6 @@ def moveBasket(basket_number):
         gripper_function(clientID, 0, j1, j2, p1, p2)
 
         # Moving robotic arm back to first table, ready to move basket #2
-        # move_L(clientID, target, b1_final_pos_2, 2)
         time.sleep(1)
         move_L(clientID, target, b1_int_pos_5, 2)
         time.sleep(1)
@@ -252,10 +245,11 @@ def moveBasket(basket_number):
         move_L(clientID, target, b2_initial_pos, 2)
         time.sleep(3)
         sim.simxSetObjectParent(clientID, basket2, connector, True, sim.simx_opmode_blocking)
+        time.sleep(1)
 
         # Closing gripper
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(2)
 
@@ -292,7 +286,7 @@ def shakeBasket(basket_number):
         time.sleep(3)
         sim.simxSetObjectParent(clientID, basket1, connector, True, sim.simx_opmode_blocking)
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(1)
 
@@ -306,7 +300,7 @@ def shakeBasket(basket_number):
         time.sleep(3)
         sim.simxSetObjectParent(clientID, basket2, connector, True, sim.simx_opmode_blocking)
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(1)
 
@@ -332,7 +326,7 @@ def moveBack(basket_number):
         sim.simxSetObjectParent(clientID, basket1, connector, True, sim.simx_opmode_blocking)
         time.sleep(1)
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(1)
         move_L(clientID, target, b1_int_pos_5, 2)
@@ -360,7 +354,7 @@ def moveBack(basket_number):
         sim.simxSetObjectParent(clientID, basket2, connector, True, sim.simx_opmode_blocking)
         time.sleep(1.5)
         gripper_function(clientID, 1, j1, j2, p1, p2)
-        time.sleep(0.85)
+        time.sleep(0.9)
         pause_gripper(clientID, j1, j2)
         time.sleep(1)
         move_L(clientID, target, b2_int_pos_5, 2)
@@ -374,13 +368,16 @@ def moveBack(basket_number):
         move_L(clientID, target, b2_int_pos, 2)
         time.sleep(1)
         move_L(clientID, target, b2_return_pos, 2)
-        time.sleep(2)
+        time.sleep(4)
         sim.simxSetObjectParent(clientID, basket2, -1, True, sim.simx_opmode_blocking)
         time.sleep(1)
         gripper_function(clientID, 0, j1, j2, p1, p2)
         time.sleep(1)
 
                 ## Creating a simple GUI
+
+from tkinter import *
+root = Tk()
 
 openGripperAtStart(clientID, j1, j2, p1, p2) # Opening the gripper at the beginning of simulation
 

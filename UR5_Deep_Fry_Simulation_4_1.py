@@ -67,7 +67,7 @@ def openGripperAtStart(clientid, j1, j2, p1, p2):
         sim.simxSetJointTargetVelocity(clientid, j1, 0.2, sim.simx_opmode_oneshot)
         sim.simxSetJointTargetVelocity(clientid, j2, 0.4, sim.simx_opmode_oneshot)
 
-                ## Move_L function
+                ## Move_L function ##
 
 PI = np.pi
 

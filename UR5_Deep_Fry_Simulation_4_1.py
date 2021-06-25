@@ -127,7 +127,7 @@ def move_L(clientid, target, target_pos, speed):
     delta_pos.clear()
     intermediate_pos.clear()
 
-                ## Initializing
+                ## Initializing ##
 
 # Obtaining appropriate handles
 errorCode, target = sim.simxGetObjectHandle(clientID, 'target', sim.simx_opmode_blocking)
@@ -158,7 +158,7 @@ errorCode, basket1 = sim.simxGetObjectHandle(clientID, 'basket1', sim.simx_opmod
 errorCode, basket2 = sim.simxGetObjectHandle(clientID, 'basket2', sim.simx_opmode_blocking)
 errorCode, connector = sim.simxGetObjectHandle(clientID, 'ROBOTIQ_85_attachPoint', sim.simx_opmode_blocking)
 
-                ## Basket-moving functions
+                ## Basket-moving functions ##
 
 # Function that perform the movements of the cuboids/baskets
 def moveBasket(basket_number):
@@ -334,7 +334,7 @@ def moveBack(basket_number):
         gripper_function(clientID, 0, j1, j2, p1, p2)
         time.sleep(1)
 
-                ## Creating a simple GUI
+                ## Creating a simple GUI ##
 
 from tkinter import *
 root = Tk()

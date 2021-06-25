@@ -20,7 +20,7 @@
   * The code for the Pioneer p3dx is able to control the speed of the left and right motors, utilize the ultrasonic sensors, and capture images (given that a vision
 sensor has been set up in Coppelia).
 
-2. UR10 robotic arm 
+2. UR10 robotic arm (angular & linear)
  * The angular version of the script allows joint control based on user input (in degrees that is later converted to radians). The .py script is executable in any terminal program.
 
 * The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. Inverse kinematics with tip and target tracing was used. The .py script is executable in any terminal program.
@@ -29,7 +29,7 @@ sensor has been set up in Coppelia).
 - Use Coppelia 4.1--the current 4.2 version doesn't support tip-target inverse kinematics, so an older version was used (older versions of CoppeliaSim can be installed online)
 - For the alpha, beta, gamma inputs in the linear version, set all of them equal to zero
 
-3. UR5 robotic arm
+3. UR5 robotic arm (pick and place cuboids & pick and place deep fry baskets)
 * There are two pick and place scripts: one is for dynamic, respondable cuboids (UR5_Pick_And_Place_4_1.py). The second is for static, non-respondable deep fry baskets (UR5_Deep_Fry_Simulation_4_1.py). In both cases, 'gripping' was emulated and not actually performed
 * All joints are set to inverse kinematics + hybrid enabled mode
 * The gripper is the child object of the UR5_connection object. Contrary to online tutorials, the gripper can remain dynamically ENABLED as long as it's connected to the correct object. See: https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm

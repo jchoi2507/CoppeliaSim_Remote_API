@@ -31,10 +31,10 @@ sensor has been set up in Coppelia)
 # ❓ For any confusion on...
 
 ### [Function parameters](https://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm)
-- Most, if not all, functions that involves manipulating an object in CoppeliaSim in any way (changing position, velocity, etc, etc.) requires obtaining that object's 'handle' with returnCode, handle = sim.simxGetObjectHandle(clientID, objectName, operationMode)
-   - The return value, handle, is now a usable variable for future function calls from the sim library that require an object's handle
+- Most, if not all, functions that involve manipulating an object in CoppeliaSim in any way (changing position, velocity, etc, etc.) require obtaining that object's 'handle' with: returnCode, handle = sim.simxGetObjectHandle(clientID, objectName, operationMode)
+   - The variable 'handle' is now usable for future function calls from the sim library that require an object's handle
 - All parameters for functions in the 'sim' (in earlier versions, this was 'vrep') library can be found at the official documentation link above
-- Pretty self-explanatory, only possible confusing parts involve the sim.simx_opmode_blocking/oneshot_wait/streaming/etc/etc
+- Pretty self-explanatory, only possible confusing parts involve the sim.simx_opmode_blocking/oneshot_wait/streaming
    - Follow documentation recommendations for operation mode parameter, but from personal experience, it is best to try all the suggestions and play around with it to see which one works best
 
 ### [Understanding dynamic simulations](https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm)
@@ -44,8 +44,8 @@ sensor has been set up in Coppelia)
 
 ### [Remote API connection](https://youtu.be/SQont-mTnfM?t=982)
 - Remote API connection allows control of the CoppeliaSim software without actually interacting with the application's interface
-   - In this case, Python was used as the language of choice to communicate between CoppeliaSim and a user interface
-   - There are online guides for CoppeliaSim remote API connection in MATLAB, C++, Java
+   - In this case, Python was used to communicate between CoppeliaSim and a user interface
+   - There are online guides for CoppeliaSim remote API connection in MATLAB, C++, and Java
 - Certain conditions must be met for remote API connection to work, including:
    - Correct files in workplace directory
    - Correct command in the child script of any object in the scene
@@ -55,7 +55,7 @@ sensor has been set up in Coppelia)
    - Attempting to run the programs in this repository with b0-based software will not work !!
 
 ### [The move_L function](https://youtu.be/CVoV08T0Aqo?t=948)
-- Credits to Mechatronics Ninja on YT for providing the code in MATLAB, which I then translated to Python
+- Credits to Mechatronics Ninja on YT for providing the code for the move_L function in MATLAB which I then translated to Python
 
 ### General questions
 - I highly recommend posting a question on the [CoppeliaSim Forums](https://forum.coppeliarobotics.com/) with any Coppelia software-related questions

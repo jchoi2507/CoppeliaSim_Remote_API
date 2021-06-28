@@ -48,5 +48,7 @@ sensor has been set up in Coppelia).
    - Correct command in the child script of any object in the scene
    - Simulation already running before executing a program
 - A newer and more flexible method to utilize remote API was released, the BlueZero interface
+   - The b0-based remote API connection utilizes a similar but different library and also requires a resolver to be running
+   - Attempting to run the programs in this repository with b0-based software will not work !!
 4. [The move_L function](https://youtu.be/CVoV08T0Aqo?t=948)
 - Credits to Mechatronics Ninja on YT for providing the code in MATLAB, which I then translated to Python

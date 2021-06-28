@@ -53,5 +53,5 @@ sensor has been set up in Coppelia)
 4. [The move_L function](https://youtu.be/CVoV08T0Aqo?t=948)
 - Credits to Mechatronics Ninja on YT for providing the code in MATLAB, which I then translated to Python
 5. General questions
-- I highly recommend posting a question on the [CoppeliaSim Forums](ttps://forum.coppeliarobotics.com/) with any Coppelia software-related questions
+- I highly recommend posting a question on the [CoppeliaSim Forums](https://forum.coppeliarobotics.com/) with any Coppelia software-related questions
 - It is also suggested to refer to all the hyperlinks above with any general questions about CoppeliaSim/API connection/inverse kinematics/robotic arm movements

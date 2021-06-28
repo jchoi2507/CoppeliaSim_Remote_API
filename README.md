@@ -4,18 +4,18 @@
 * Legacy remote API (not to be confused with b0 remote API) commands were used
 * Simulations in CoppeliaSim must already be running for remote API connection to work
 * sim.py, simConst.py, rempoteApi.dll must all be in workspace directory
-* Sphere object is there purely for the purpose of having simRemoteApi.start(19999) in its child script; without that command somewhere in the scene, remote API connection is not possible. The command is not included in the child script of the actual robotic arm for the sake of disabling the object's entire child script.
+* Sphere object is there purely for the purpose of having simRemoteApi.start(19999) in its child script; without that command somewhere in the scene, remote API connection is not possible—the command is not included in the child script of the actual robotic arm for the sake of disabling the object's entire child script
 
 # Simulated Robots
 
 1. PIONEER p3dx 
   * The code for the Pioneer p3dx is able to control the speed of the left and right motors, utilize the ultrasonic sensors, and capture images (given that a vision
-sensor has been set up in Coppelia).
+sensor has been set up in Coppelia)
 
 2. UR10 robotic arm (angular & linear)
- * The angular version of the script allows joint control based on user input (in degrees that is later converted to radians). The .py script is executable in any terminal program.
+ * The angular version of the script allows joint control based on user input (in degrees that is later converted to radians); the .py script is executable in any terminal program
 
-* The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. Inverse kinematics with tip and target tracing was used. The .py script is executable in any terminal program.
+* The linear version of the script essentially allows the user to enter a set of coordinates (x, y, z) that the robotic arm will follow. Inverse kinematics with tip and target tracing was used; the .py script is executable in any terminal program
 
 - A few notes about the linear version:
    - Use Coppelia 4.1--the current 4.2 version doesn't support tip-target inverse kinematics, so an older version was used (older versions of CoppeliaSim can be installed online)
@@ -46,9 +46,12 @@ sensor has been set up in Coppelia).
 - Certain conditions must be met for remote API connection to work, including:
    - Correct files in workplace directory
    - Correct command in the child script of any object in the scene
-   - Simulation already running before executing a program
+   - Simulation already running before executing a Python program
 - A newer and more flexible method to utilize remote API was released, the BlueZero interface
    - The b0-based remote API connection utilizes a similar but different library and also requires a resolver to be running
    - Attempting to run the programs in this repository with b0-based software will not work !!
 4. [The move_L function](https://youtu.be/CVoV08T0Aqo?t=948)
 - Credits to Mechatronics Ninja on YT for providing the code in MATLAB, which I then translated to Python
+5. General questions
+- I highly recommend posting a question on the [CoppeliaSim Forums](ttps://forum.coppeliarobotics.com/) with any Coppelia software-related questions
+- It is also suggested to refer to all the hyperlinks above with any general questions about CoppeliaSim/API connection/inverse kinematics/robotic arm movements

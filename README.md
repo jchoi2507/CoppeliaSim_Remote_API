@@ -1,4 +1,4 @@
-# Important Notes
+# 🤖 Important Notes
 
 * [UR5 Deep Fry Simulation Video](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
 * Legacy remote API (not to be confused with b0 remote API) commands were used
@@ -6,7 +6,7 @@
 * sim.py, simConst.py, rempoteApi.dll must all be in workspace directory
 * Sphere object is there purely for the purpose of having simRemoteApi.start(19999) in its child script; without that command somewhere in the scene, remote API connection is not possible—the command is not included in the child script of the actual robotic arm for the sake of disabling the object's entire child script
 
-# Simulated Robots
+# 👨🏻‍💻 Simulated Robots
 
 1. PIONEER p3dx 
   * The code for the Pioneer p3dx is able to control the speed of the left and right motors, utilize the ultrasonic sensors, and capture images (given that a vision
@@ -27,7 +27,7 @@ sensor has been set up in Coppelia)
 * The gripper is the child object of the UR5_connection object. Contrary to online tutorials, the gripper can remain dynamically ENABLED as long as it's connected to the correct object. See: https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm
 * The UR5_Pick_And_Place_4_1.py has an associated scene, UR5_Cuboids.ttt. The UR5_Deep_Fry_Simulation_4_1.py has an associated scene, UR5_Deep_Fry_Simulation.ttt
 
-# For any confusion on...
+# ❓ For any confusion on...
 
 1. [Function parameters](https://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm)
 - Most, if not all, functions that involves manipulating an object in CoppeliaSim in any way (changing position, velocity, etc, etc.) requires obtaining that object's 'handle' with returnCode, handle = sim.simxGetObjectHandle(clientID, objectName, operationMode)

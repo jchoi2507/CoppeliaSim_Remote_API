@@ -1,6 +1,7 @@
 # 🤖 Important Notes
 
-* [UR5 Deep Fry Simulation Video](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
+- Please consider this repository as a progression of my journey of robotic simulations, starting with messing around with the p3dx to a full simulation of the UR5
+   - [UR5 Deep Fry Simulation Video](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
 * Legacy remote API (not to be confused with b0 remote API) commands were used
 * Simulations in CoppeliaSim must already be running for remote API connection to work
 * sim.py, simConst.py, rempoteApi.dll must all be in workspace directory

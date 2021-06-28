@@ -1,6 +1,6 @@
 # 🤖 Important Notes
 
-- Please consider this repository as a progression of my journey of robotic simulations, starting with messing around with the p3dx to a full simulation of the UR5
+- Please consider this repository a progression of my journey in robotic simulations, starting with messing around with the p3dx, to IK tip & target tracing with the UR10, and finally a more in-depth pick and place simulation of the UR5 in an industry setting
    - [UR5 Deep Fry Simulation Video](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
 * Legacy remote API (not to be confused with b0 remote API) commands were used
 * Simulations in CoppeliaSim must already be running for remote API connection to work

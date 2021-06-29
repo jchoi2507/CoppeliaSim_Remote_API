@@ -43,6 +43,9 @@ sensor has been set up in Coppelia)
    - The method in which the linear positioning programs work is through repositioning the 'target' dummy, thus achieving the effect of the robotic arm moving to a desired coordinate
 
 ### [Remote API connection](https://youtu.be/SQont-mTnfM?t=982)
+- Why?
+   - Remote API connection doesn't require the user to learn/program Lua, but rather in C++, Python, Java, or MATLAB (more commonly known languages)
+   - Understanding and establishing remote API connection can not only help understand but also facilitate real-life robot control through these external programs
 - Remote API connection allows control of the CoppeliaSim software without actually interacting with the application's interface
    - In this case, Python was used to communicate between CoppeliaSim and a user interface
    - There are online guides for CoppeliaSim remote API connection in MATLAB, C++, and Java

@@ -1,9 +1,14 @@
+## gripper.py contains all the gripper-related functions for other files to access and call upon.
+
 import sim
+import time
+
+import globalvariables as g
 
                 ## Gripper functions ##
 
 # Gripper function that opens/closes the gripper
-def gripper_function(clientid, closing, j1, j2, p1, p2):
+def gripperFunction(clientid, closing, j1, j2, p1, p2):
 
     if closing == 1:
         if p1 < (p2 - 0.008):
@@ -22,7 +27,7 @@ def gripper_function(clientid, closing, j1, j2, p1, p2):
             sim.simxSetJointTargetVelocity(clientid, j2, 0.4, sim.simx_opmode_oneshot)
 
 # The below function will stop moving the gripper, thus achieving 'fake gripping'
-def pause_gripper(clientid, j1, j2):
+def pauseGripper(clientid, j1, j2):
     sim.simxSetJointTargetVelocity(clientid, j1, 0, sim.simx_opmode_oneshot)
     sim.simxSetJointTargetVelocity(clientid, j2, 0, sim.simx_opmode_oneshot)
 
@@ -35,3 +40,11 @@ def openGripperAtStart(clientid, j1, j2, p1, p2):
     else:
         sim.simxSetJointTargetVelocity(clientid, j1, 0.2, sim.simx_opmode_oneshot)
         sim.simxSetJointTargetVelocity(clientid, j2, 0.4, sim.simx_opmode_oneshot)
+
+# Calls upon the gripper function to start closing, then pauses the closing to align with the geometry of the
+# handle of the deep fry basket. This achieves the 'fake gripping' effect without actually gripping the object.
+def closeGripper(clientid):
+    gripperFunction(clientid, 1, g.j1, g.j2, g.p1, g.p2)
+    time.sleep(0.9) # Alter the time value to account for differently sized objects to grip
+    pauseGripper(clientid, g.j1, g.j2)
+

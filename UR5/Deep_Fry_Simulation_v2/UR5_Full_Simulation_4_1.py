@@ -13,14 +13,17 @@
 # To include in Lua script in Coppelia software:
 # simRemoteApi.start(19999)
 
-                ## Remote API connection ##
-
 from tkinter import * # Python UI library
 
 import globalvariables as g # Global variables module
 import chickencooking as cc # Chicken-cooking functions module
 
 g.connectionMessage(g.clientID) # Printing out a successful/unsuccessful connection message
+
+# Incrementing counter for basket array
+def incCounter():
+    global counter
+    counter = counter + 1
 
                 ## Simple UI ##
 
@@ -33,13 +36,12 @@ boneChickenPicture = PhotoImage(file='boneResizedWithText.png')
 bonelessChickenPicture = PhotoImage(file='bonelessResizedWithText.png')
 
 button1 = Button(root, padx=10, pady=10, image=boneChickenPicture,
-                 command=lambda: cc.boneChicken(countArr[counter]))
+                 command=lambda: [cc.boneChicken(countArr[counter], counter), incCounter()])
 button2 = Button(root, padx=10, pady=10, image=bonelessChickenPicture,
-                 command=lambda: cc.bonelessChicken(countArr[counter]))
+                 command=lambda: [cc.bonelessChicken(countArr[counter], counter), incCounter()])
 
 button1.pack()
 button2.pack()
 
 root.mainloop()
-counter = counter + 1
 

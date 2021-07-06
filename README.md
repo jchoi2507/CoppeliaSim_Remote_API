@@ -1,7 +1,8 @@
 # 🤖 Important Notes
 
 - Please consider this repository a progression of my journey in robotic simulations, starting with messing around with the p3dx, to IK tip & target tracing with the UR10, and finally a more in-depth pick and place simulation of the UR5 in an industry setting
-   - [UR5 Deep Fry Simulation Video](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
+   - [UR5 Deep Fry Simulation Video v1](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
+   - UR5 Deep Fry Simulation Video v2 (TBA)
 * Legacy remote API (not to be confused with b0 remote API) commands were used
 * Simulations in CoppeliaSim must already be running for remote API connection to work
 * sim.py, simConst.py, rempoteApi.dll must all be in workspace directory
@@ -23,10 +24,11 @@ sensor has been set up in Coppelia)
    - For the alpha, beta, gamma inputs in the linear version, set all of them equal to zero
 
 ### UR5 robotic arm (pick and place cuboids & pick and place deep fry baskets)
-* There are two pick and place scripts: one is for dynamic, respondable cuboids (UR5_Pick_And_Place_4_1.py). The second is for static, non-respondable deep fry baskets (UR5_Deep_Fry_Simulation_4_1.py). In both cases, 'gripping' was emulated and not actually performed
+- There are two industry simulations of the UR5 performing pick and place actions
+   - Version 1 consists of basic pick and place of a cooking basket into a deep fryer
+   - Version 2 improves on the menu UI and backend scheduling. It also implements a pseudo-conveyor, proximity sensor, and an infinite spawning mechanism
 * All joints are set to inverse kinematics + hybrid enabled mode
 * The gripper is the child object of the UR5_connection object. Contrary to online tutorials, the gripper can remain dynamically ENABLED as long as it's connected to the correct object. See: https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm
-* The UR5_Pick_And_Place_4_1.py has an associated scene, UR5_Cuboids.ttt. The UR5_Deep_Fry_Simulation_4_1.py has an associated scene, UR5_Deep_Fry_Simulation.ttt
 
 # ❓ For any confusion on...
 

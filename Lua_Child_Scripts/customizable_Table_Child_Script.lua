@@ -25,6 +25,6 @@ while true do
     sim.setObjectInt32Parameter(hndShape, 10, 0) -- Sets the pure shape as invisible from cameras ONLY, still visible from vision sensor
     sim.setObjectPosition(hndShape, -1, {-1.97, -0.7028, 0.5548}) -- Sets spawn point of shape
     sim.setObjectSpecialProperty(hndShape, sim.objectspecialproperty_detectable_all) -- Makes the object detectable to vision sensor
-    sim.wait(10)
+    sim.wait(10) -- Increase wait time if the cube + basket attachments are spawning too quickly
     
 end

@@ -1,23 +1,35 @@
+## basket.py is the module that commands which basket to perform what action. It was created to provide more readability
+## to the basketfunctions.py module.
+
 import basketfunctions as bf # Function definitions for basket module
 import globalvariables as g # Global variables module
 
-def moveBasket(basketNum):
-    if basketNum == 1:
-        bf.b1MoveBasket(g.clientID)
+def moveBasket(targetPosition, arrIndex):
+    if targetPosition == 1:
+        bf.moveBasketFunc(g.clientID, 1, arrIndex)
+    elif targetPosition == 2:
+        bf.moveBasketFunc(g.clientID, 2, arrIndex)
+    elif targetPosition == 3:
+        pass
+    elif targetPosition == 4:
+        pass
 
-    elif basketNum == 2:
-        bf.b2MoveBasket(g.clientID)
+def shakeBasket(targetPosition, arrIndex):
+    if targetPosition == 1:
+        bf.shakeBasketFunc(g.clientID, 1, arrIndex)
+    elif targetPosition == 2:
+        bf.shakeBasketFunc(g.clientID, 2, arrIndex)
+    elif targetPosition == 3:
+        pass
+    elif targetPosition == 4:
+        pass
 
-def shakeBasket(basketNum):
-    if basketNum == 1:
-        bf.b1ShakeBasket(g.clientID)
-
-    elif basketNum == 2:
-        bf.b2ShakeBasket(g.clientID)
-
-def returnBasket(basketNum):
-    if basketNum == 1:
-        bf.b1ReturnBasket(g.clientID)
-
-    elif basketNum == 2:
-        bf.b2ReturnBasket(g.clientID)
+def returnBasket(targetPosition, arrIndex):
+    if targetPosition == 1:
+        bf.returnBasketFunc(g.clientID, 1, arrIndex)
+    elif targetPosition == 2:
+        bf.returnBasketFunc(g.clientID, 2, arrIndex)
+    elif targetPosition == 3:
+        pass
+    elif targetPosition == 4:
+        pass

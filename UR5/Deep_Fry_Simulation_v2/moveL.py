@@ -1,3 +1,6 @@
+## moveL.py is the module for the move_L function, which is responsible for moving the actual arm.
+## Credit goes to 'Mechatronics Ninja' on YouTube for providing the baseline MATLAB code, which I then translated.
+
 import sim
 import numpy as np
 
@@ -58,3 +61,4 @@ def move_L(clientid, target, target_pos, speed):
     old_pos.clear()
     delta_pos.clear()
     intermediate_pos.clear()
+

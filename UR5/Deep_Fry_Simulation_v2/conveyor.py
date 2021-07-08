@@ -9,5 +9,5 @@ def initBasket(arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
     errorCode, cuboidH = sim.simxGetObjectHandle(g.clientID, 'Cuboid', sim.simx_opmode_blocking)
 
-    sim.simxSetObjectParent(g.clientID, basketH, cuboidH, False, sim.simx_opmode_blocking)  # play around w/ True and False to see which one works best
+    sim.simxSetObjectParent(g.clientID, basketH, cuboidH, False, sim.simx_opmode_blocking)
     sim.simxSetObjectPosition(g.clientID, basketH, sim.sim_handle_parent, relativeToParent, sim.simx_opmode_oneshot)

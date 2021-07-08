@@ -14,9 +14,11 @@
 # simRemoteApi.start(19999)
 
 from tkinter import * # Python UI library
+import threading
 
 import globalvariables as g # Global variables module
 import chickencooking as cc # Chicken-cooking functions module
+import UI as ui
 
 g.connectionMessage(g.clientID) # Printing out a successful/unsuccessful connection message
 
@@ -24,6 +26,12 @@ g.connectionMessage(g.clientID) # Printing out a successful/unsuccessful connect
 def incCounter():
     global counter
     counter = counter + 1
+
+def startDisplayThread():
+    tableThread = threading.Thread(target=ui.displayTimers(),
+                                   args=())
+    tableThread.start()
+    return
 
                 ## Simple UI ##
 
@@ -35,13 +43,14 @@ root = Tk()
 boneChickenPicture = PhotoImage(file='boneResizedWithText.png')
 bonelessChickenPicture = PhotoImage(file='bonelessResizedWithText.png')
 
-button1 = Button(root, padx=10, pady=10, image=boneChickenPicture,
+button1 = Button(root, text="Click here to start ordering.",padx=10, pady=10, command=lambda: startDisplayThread())
+button2 = Button(root, padx=10, pady=10, image=boneChickenPicture,
                  command=lambda: [cc.boneChicken(countArr[counter], counter), incCounter()])
-button2 = Button(root, padx=10, pady=10, image=bonelessChickenPicture,
+button3 = Button(root, padx=10, pady=10, image=bonelessChickenPicture,
                  command=lambda: [cc.bonelessChicken(countArr[counter], counter), incCounter()])
 
 button1.pack()
 button2.pack()
+button3.pack()
 
 root.mainloop()
-

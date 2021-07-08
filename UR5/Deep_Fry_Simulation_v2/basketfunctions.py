@@ -3,10 +3,13 @@
 
 import time
 import sim
+import threading
 
 import moveL as mL # move_L function module
 import gripper as grip # Gripper functions module
 import globalvariables as g # Global variables module
+import checktimers # Timer checking module
+import UI as ui # Table UI module (to be called as a thread)
 
 def moveBasketFunc(clientid, targetPosition, arrIndex):
 
@@ -35,6 +38,13 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
+        time.sleep(2)
+
+        g.tableArr[0].occupy() #Table 1 is now occupied
+        g.tableArr[0].startTimer() #Starting timer for table 1
+        time.sleep(2)
+        thread1 = threading.Thread(target=checktimers.b1checkTimer, args=(targetPosition, arrIndex)) #Creating a thread
+        thread1.start() #Running thread
 
         # Moving robotic arm to the 'mutual position'--where it can now reach the other baskets
         time.sleep(1)
@@ -60,6 +70,12 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
+        g.tableArr[1].occupy() #Table 2 is now occupied
+        g.tableArr[1].startTimer() #Starting timer for table 2
+        time.sleep(2)
+        thread2 = threading.Thread(target=checktimers.b2checkTimer, args=(targetPosition, arrIndex)) #Creating a thread
+        thread2.start() #Running thread
+
         # Moving robotic arm to the 'mutual position'--where it can now reach the other baskets
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b2_int_pos_5, 2)
@@ -80,6 +96,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
     b2_back_pos = [-1.6, 0.97, 0.52, 0, 0, 0]
 
     if (targetPosition == 1):
+        time.sleep(2)
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
@@ -95,6 +112,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         time.sleep(1)
 
     elif (targetPosition == 2):
+        time.sleep(2)
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
@@ -110,8 +128,10 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         time.sleep(1)
 
     elif (targetPosition == 3):
+        time.sleep(2)
         pass
     elif (targetPosition == 4):
+        time.sleep(2)
         pass
 
 def returnBasketFunc(clientid, targetPosition, arrIndex):

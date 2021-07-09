@@ -1,37 +1,46 @@
 # 7/5/2021 Jacob Choi
 
-## UR5_Full_Simulation_4_1.py is the second version of the deep fry simulation. Some differences between v1 and v2
-## include:
-        # More applicability to a robotic kitchen--cooking either bone or boneless chicken
-            # 4 baskets instead of 2
-            # Proximity sensor and pseudo-conveyor application
-            # 'Infinite' basket spawning mechanism
-        # Menu UI with automated backend scheduling (no direct commands)
-            # Improved button interface
-        # Organized modules for readability and debugging purposes
-
-# To include in Lua script in Coppelia software:
-# simRemoteApi.start(19999)
-
-from tkinter import * # Python UI library
+from tkinter import *
 import threading
+import globalvariables as g #Global variables module
+import chickencooking as cc #Chicken-cooking functions module
+import UI as ui #Timer UI module
 
-import globalvariables as g # Global variables module
-import chickencooking as cc # Chicken-cooking functions module
-import UI as ui
+g.connectionMessage(g.clientID) #Printing out a successful/unsuccessful remote API connection message
 
-g.connectionMessage(g.clientID) # Printing out a successful/unsuccessful connection message
-
-# Incrementing counter for basket array
+#Incrementing counter to loop through the countArr array
 def incCounter():
     global counter
     counter = counter + 1
 
+#Continually displays timers for baskets
 def startDisplayThread():
-    tableThread = threading.Thread(target=ui.displayTimers(),
+    tableThread = threading.Thread(target=ui.displayTimers,
                                    args=())
     tableThread.start()
     return
+
+                ## Simple UI ##
+
+countArr = ["", "0", "1", "2"] #Array of appendable strings that represent the basket's ID in the CoppeliaSim scene
+counter = 0
+
+root = Tk()
+
+boneChickenPicture = PhotoImage(file=r"C:\Users\LG\Desktop\DeepFrySimulationv2\boneResizedWithText.png")
+bonelessChickenPicture = PhotoImage(file=r"C:\Users\LG\Desktop\DeepFrySimulationv2\bonelessResizedWithText.png")
+
+#Creating three buttons, 1) display timers option 2) order bone chicken 3) order boneless chicken
+button1 = Button(root, text="Display timers",padx=120, pady=20, command=lambda: startDisplayThread())
+button2 = Button(root, image=boneChickenPicture,
+                 command=lambda: [cc.boneChicken(countArr[counter], counter), incCounter()])
+button3 = Button(root, image=bonelessChickenPicture,
+                 command=lambda: [cc.bonelessChicken(countArr[counter], counter), incCounter()])
+
+button1.pack()
+button2.pack()
+button3.pack()
+root.mainloop()
 
                 ## Simple UI ##
 

@@ -1,49 +1,40 @@
 import time
 import sim
-from colorama import Fore
-import threading
-
 import globalvariables as g
-import basket
-import gripper as grip
-import conveyor
-import UI as ui
+import basket #Refined version of the basketfunctions.py module
+import gripper as grip #Gripper functions module
+import conveyor #Conveyor functions module
+import checktimers #Threaded functions to check basket-shaking timer module
 
+#Performs the operation of moving the basket from the conveyor to the deep-fryer
 def boneChicken(arrIndex, counter):
-    conveyor.initBasket(arrIndex)
+    conveyor.initBasket(arrIndex) #Attaching a non-dynamic basket to the dynamic, respondable, invisible cuboid shape
     while True:
-        returnCode, detectionState, detectedPoint, detectedObjectHandle, detectedSurfaceNormalVector = \
-            sim.simxReadProximitySensor(g.clientID, g.proximitySensor, sim.simx_opmode_buffer)
-        if (detectionState > 0):
-            time.sleep(1)
-            sim.simxRemoveObject(g.clientID, detectedObjectHandle, sim.simx_opmode_blocking) # change to sim.simx_opmode_oneshot if it doesn't work
-            cookBoneChicken(arrIndex, counter)
 
-            elapsedTime = g.tableArr[counter].endTime - g.tableArr[counter].startTime
-            if (elapsedTime < 65.0 and elapsedTime >= 50.0): #Accounting for multiple processes
-                time.sleep(10)
-            break
+        checktimers.delayIfNecessary()       
 
+        time.sleep(1)
+        cookBoneChicken(arrIndex, counter)
+        break
+
+        #elapsedTime = g.tableArr[counter].endTime - g.tableArr[counter].startTime
+
+#Performs the operation of moving the basket from the conveyor to the deep-fryer
 def bonelessChicken(arrIndex, counter):
-    conveyor.initBasket(arrIndex)
+    conveyor.initBasket(arrIndex) #Attaching a non-dynamic basket to the dynamic, respondable, invisible cuboid shape
     while True:
-        returnCode, detectionState, detectedPoint, detectedObjectHandle, detectedSurfaceNormalVector = \
-            sim.simxReadProximitySensor(g.clientID, g.proximitySensor, sim.simx_opmode_buffer)
-        if (detectionState > 0):
-            time.sleep(1)
-            sim.simxRemoveObject(g.clientID, detectedObjectHandle, sim.simx_opmode_blocking) # change to sim.simx_opmode_oneshot if it doesn't work
-            cookBonelessChicken(arrIndex, counter)
 
-            elapsedTime = g.tableArr[counter].endTime - g.tableArr[counter].startTime
-            if (elapsedTime < 65.0 and elapsedTime >= 50.0): #Accounting for multiple processes
-                time.sleep(10)
-            break
+        checktimers.delayIfNecessary()
 
-                ## Performing the deep frying actions ##
+        time.sleep(1)
+        cookBonelessChicken(arrIndex, counter)
+        break
+
+        #elapsedTime = g.tableArr[counter].endTime - g.tableArr[counter].startTime
 
 # Deep frying time: 9 minutes
 def cookBoneChicken(arrIndex, counter):
-    grip.openGripperAtStart(g.clientID, g.j1, g.j2, g.p1, g.p2)
+    grip.openGripperAtStart(g.clientID, g.j1, g.j2, g.p1, g.p2) #Opens gripper at the very beginning of moving the basket
     time.sleep(2)
 
     basket.moveBasket(arrIndex, counter) #Move basket from conveyor -> table x
@@ -51,7 +42,7 @@ def cookBoneChicken(arrIndex, counter):
 
 # Deep frying time: 6 minutes
 def cookBonelessChicken(arrIndex, counter):
-    grip.openGripperAtStart(g.clientID, g.j1, g.j2, g.p1, g.p2)
+    grip.openGripperAtStart(g.clientID, g.j1, g.j2, g.p1, g.p2) #Opens gripper at the very beginning of moving the basket
     time.sleep(2)
 
     basket.moveBasket(arrIndex, counter) #Move basket from conveyor -> table x

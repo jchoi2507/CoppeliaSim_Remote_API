@@ -1,11 +1,8 @@
 ## basket.py is the module that commands which basket to perform what action. It was created to provide more readability
 ## to the basketfunctions.py module.
 
-import threading
-
 import basketfunctions as bf # Function definitions for basket module
 import globalvariables as g # Global variables module
-import UI as ui
 
 def moveBasket(arrIndex, targetPosition):
     if targetPosition == 0: #occupy position 1
@@ -13,9 +10,9 @@ def moveBasket(arrIndex, targetPosition):
     elif targetPosition == 1: #occupy position 2
         bf.moveBasketFunc(g.clientID, 2, arrIndex)
     elif targetPosition == 2: #occupy position 3
-        pass
+        bf.moveBasketFunc(g.clientID, 3, arrIndex)
     elif targetPosition == 3: #occupy position 4
-        pass
+        bf.moveBasketFunc(g.clientID, 4, arrIndex)
 
 def shakeBasket(arrIndex, targetPosition):
     if targetPosition == 0: #occupy position 1

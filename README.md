@@ -63,6 +63,13 @@ sensor has been set up in Coppelia)
 ### [The move_L function](https://youtu.be/CVoV08T0Aqo?t=948)
 - Credits to Mechatronics Ninja on YT for providing the code for the move_L function in MATLAB which I then translated to Python
 
+### CoppeliaSim Lag
+- The CoppeliaSim software is CPU-intensive, so if you're operating on a low/medium-end computer, you can do the following to increase simulation FPS:
+   - Decrease the actual window size as small as possible
+   - Zoom in to the scene itself as much as possible
+   - Refrain from adding any external textures (My Deep Fry v1 video showcases how much lag it can produce...)
+   - Remove unnecessary objects/disable unnecessary child scripts
+
 ### General questions
 - I highly recommend posting a question on the [CoppeliaSim Forums](https://forum.coppeliarobotics.com/) with any Coppelia software-related questions
 - It is also suggested to refer to all the hyperlinks above with any general questions about CoppeliaSim/API connection/inverse kinematics/robotic arm movements

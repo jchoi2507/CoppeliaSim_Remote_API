@@ -1,5 +1,5 @@
 import time
-from colorama import Fore
+from colorama import Fore, Style
 import os
 import globalvariables as g
 
@@ -18,7 +18,7 @@ def displayTimers():
         t3Display(b3shake_left)
         t4Display(b4shake_left)
 
-        time.sleep(1) #Refreshes every 1 second
+        time.sleep(1) #Refreshes every 1 seconds
         os.system('cls') #clearing the terminal console screen constantly so there's no need to scroll
 
 #The below functions display, based on the table #, the following information:
@@ -27,62 +27,82 @@ def displayTimers():
     #Or, if completed, displays a phrase indicating so
 
 def t1Display(b1shake_left):
-    if (g.tableArr[0].empty == False):
+    if (b1shake_left > 1000): #Accounting for the 'time glitch' where displayed time >>>> 1000
+        print("Basket 1:  is empty.")
+        return
+
+    elif (g.tableArr[0].empty == False):
         t1ShakesLeft = 3 - g.t1NumOfShakes
         if (g.t1NumOfShakes != 3):
-            print(Fore.GREEN + "Basket 1:", b1shake_left, Fore.GREEN + "seconds left to next shake.", 
-            t1ShakesLeft, Fore.GREEN + "shake(s) left.")
+            print("Basket 1:", Fore.GREEN + "", b1shake_left, "seconds left to next shake.", 
+            t1ShakesLeft, Fore.GREEN + "shake(s) left.", Style.RESET_ALL)
         elif (g.t1NumOfShakes == 3):
             if (b1shake_left <= 0):
-                print(Fore.CYAN + "Basket 1: completed.")
+                print("Basket 1:", Fore.CYAN + "completed.", Style.RESET_ALL)
             else:
-                print(Fore.YELLOW + "Basket 1: ", b1shake_left, Fore.YELLOW + " seconds until completion.")
+                print("Basket 1:", Fore.YELLOW + "", b1shake_left, "seconds until completion."
+                , Style.RESET_ALL)
 
     else:
-        print("Basket 1 is empty.")
+        print("Basket 1:  is empty.")
 
 def t2Display(b2shake_left):
-    if (g.tableArr[1].empty == False):
+    if (b2shake_left > 1000):
+        print("Basket 2:  is empty.")
+        return
+
+    elif (g.tableArr[1].empty == False):
         t2ShakesLeft = 3 - g.t2NumOfShakes
         if (g.t2NumOfShakes != 3):
-            print(Fore.GREEN + "Basket 2:", b2shake_left, Fore.GREEN + "seconds left to next shake.", 
-            t2ShakesLeft, Fore.GREEN + "shake(s) left.")
+            print("Basket 2:", Fore.GREEN + "", b2shake_left, "seconds left to next shake.", 
+            t2ShakesLeft, Fore.GREEN + "shake(s) left.", Style.RESET_ALL)
         elif (g.t2NumOfShakes == 3):
             if (b2shake_left <= 0):
-                print(Fore.CYAN + "Basket 2: completed.")
+                print("Basket 2:", Fore.CYAN + "completed.", Style.RESET_ALL)
             else:
-                print(Fore.YELLOW + "Basket 2: ", b2shake_left, Fore.YELLOW + " seconds until completion.")
+                print("Basket 2:", Fore.YELLOW + "", b2shake_left, "seconds until completion."
+                , Style.RESET_ALL)
 
     else:
-        print("Basket 2 is empty.")
+        print("Basket 2:  is empty.")
 
 def t3Display(b3shake_left):
-    if (g.tableArr[2].empty == False):
+    if (b3shake_left > 1000):
+        print("Basket 3:  is empty.")
+        return
+
+    elif (g.tableArr[2].empty == False):
         t3ShakesLeft = 3 - g.t3NumOfShakes
         if (g.t3NumOfShakes != 3):
-            print(Fore.GREEN + "Basket 3:", b3shake_left, Fore.GREEN + "seconds left to next shake.", 
-            t3ShakesLeft, Fore.GREEN + "shake(s) left.")
+            print("Basket 3:", Fore.GREEN + "", b3shake_left, "seconds left to next shake.", 
+            t3ShakesLeft, Fore.GREEN + "shake(s) left.", Style.RESET_ALL)
         elif (g.t3NumOfShakes == 3):
             if (b3shake_left <= 0):
-                print(Fore.CYAN + "Basket 3: completed.")
+                print("Basket 3:", Fore.CYAN + "completed.", Style.RESET_ALL)
             else:
-                print(Fore.YELLOW + "Basket 3: ", b3shake_left, Fore.YELLOW + " seconds until completion.")
+                print("Basket 3:", Fore.YELLOW + "", b3shake_left, "seconds until completion."
+                , Style.RESET_ALL)
 
     else:
-        print("Basket 3 is empty.")
+        print("Basket 3:  is empty.")
 
 def t4Display(b4shake_left):
-    if (g.tableArr[3].empty == False):
+    if (b4shake_left > 1000):
+        print("Basket 4:  is empty.")
+        return
+
+    elif (g.tableArr[3].empty == False):
         t4ShakesLeft = 3 - g.t4NumOfShakes
         if (g.t4NumOfShakes != 3):
-            print(Fore.GREEN + "Basket 4:", b4shake_left, Fore.GREEN + "seconds left to next shake.",
-            t4ShakesLeft, Fore.GREEN + "shake(s) left.")
+            print("Basket 4:", Fore.GREEN + "", b4shake_left, "seconds left to next shake.",
+            t4ShakesLeft, Fore.GREEN + "shake(s) left.", Style.RESET_ALL)
         elif (g.t4NumOfShakes == 3):
             if (b4shake_left <= 0):
-                print(Fore.CYAN + "Basket 4: completed.")
+                print("Basket 4:", Fore.CYAN + "completed.", Style.RESET_ALL)
             else:
-                print(Fore.YELLOW + "Basket 4: ", b4shake_left, Fore.YELLOW + " seconds until completion.")
+                print("Basket 4:", Fore.YELLOW + "", b4shake_left, "seconds until completion."
+                , Style.RESET_ALL)
 
     else:
-        print("Basket 4 is empty.")
+        print("Basket 4:  is empty.")
 

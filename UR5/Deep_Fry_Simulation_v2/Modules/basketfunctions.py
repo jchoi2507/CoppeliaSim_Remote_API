@@ -4,7 +4,7 @@
 import time
 import sim
 import threading
-import moveL as mL #move_L function module
+import moveL as mL
 import gripper as grip
 import globalvariables as g
 import checktimers
@@ -14,7 +14,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
 
     #Moving to initial position
     mL.move_L(clientid, g.target, g.initial_pos, 2)
-    time.sleep(3)
+    time.sleep(4)
     sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
 
     #Closing gripper
@@ -35,7 +35,6 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
-        time.sleep(2)
 
         g.tableArr[0].occupy() #Table 1 is now occupied
         g.tableArr[0].startTimer() #Starting timer for table 1
@@ -44,7 +43,6 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         thread1.start() #Running thread
 
         #Moving robotic arm to the 'mutual position'--where it can now reach the other baskets
-        time.sleep(1)
         mL.move_L(clientid, g.target, g.b1_int_pos_4, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b1_int_pos_3, 2)
@@ -61,6 +59,8 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b2_int_pos_4, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b2_int_pos_5, 2)
+        time.sleep(1)
+        mL.move_L(clientid, g.target, g.b2_int_pos_6, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
         time.sleep(3)
@@ -73,12 +73,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         thread2 = threading.Thread(target=checktimers.b2checkTimer, args=(targetPosition, arrIndex)) #Creating a thread
         thread2.start() #Running thread
 
-        #Moving robotic arm to the 'mutual position'--where it can now reach the other baskets
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_5, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_4, 2)
-        time.sleep(1)
+        mutualPositionAfter2(clientid)
 
     elif (targetPosition == 3):
         #Moving object to deep fryer
@@ -87,29 +82,29 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b3_int_pos_2, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_3, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b3_int_pos_4, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b3_int_pos_5, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b3_int_pos_6, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_7, 2)
         time.sleep(1)
+        mL.move_L(clientid, g.target, g.b3_int_pos_8, 2)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_final_pos, 2)
         time.sleep(3)
+        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+        grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
-        g.tableArr[2].occupy() #Table 2 is now occupied
-        g.tableArr[2].startTimer() #Starting timer for table 2
+        g.tableArr[2].occupy() #Table 3 is now occupied
+        g.tableArr[2].startTimer() #Starting timer for table 3
         time.sleep(2)
         thread3 = threading.Thread(target=checktimers.b3checkTimer, args=(targetPosition, arrIndex)) #Creating a thread
         thread3.start() #Running thread
 
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b3_int_pos_7)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b3_int_pos_6)
-        time.sleep(1)
+        mutualPositionAfter3(clientid)
 
     elif (targetPosition == 4):
         mL.move_L(clientid, g.target, g.b4_int_pos, 2)
@@ -119,49 +114,44 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b4_int_pos_3, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_4, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b4_int_pos_5, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b4_int_pos_6, 2)
-        time.sleep(1)
+        time.sleep(1.5)
         mL.move_L(clientid, g.target, g.b4_int_pos_7, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_8, 2)
         time.sleep(1)
+        mL.move_L(clientid, g.target, g.b4_int_pos_9, 2)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_final_pos, 2)
         time.sleep(3)
+        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+        grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
-        g.tableArr[3].occupy() #Table 2 is now occupied
-        g.tableArr[3].startTimer() #Starting timer for table 2
+        g.tableArr[3].occupy() #Table 4 is now occupied
+        g.tableArr[3].startTimer() #Starting timer for table 4
         time.sleep(2)
         thread4 = threading.Thread(target=checktimers.b4checkTimer, args=(targetPosition, arrIndex)) #Creating a thread
         thread4.start() #Running thread
 
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b4_int_pos_8)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b4_int_pos_7)
-        time.sleep(1)
+        mutualPositionAfter4(clientid)
 
 def shakeBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
-    b1_back_pos = [-1.6, 0.81, 0.52, 0, 0, 0]
-    b2_back_pos = [-1.6, 0.97, 0.52, 0, 0, 0]
 
     if (targetPosition == 1):
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-        time.sleep(2)
+        time.sleep(2.5)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(6):
-            mL.move_L(clientid, g.target, b1_back_pos, 2)
-            time.sleep(0.5)
+        for i in range(4):
+            mL.move_L(clientid, g.target, g.b1_back_pos, 2)
+            time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-
-        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
-        time.sleep(1)
 
     elif (targetPosition == 2):
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
@@ -170,75 +160,118 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(6):
-            mL.move_L(clientid, g.target, b2_back_pos, 2)
-            time.sleep(0.5)
+        for i in range(4):
+            mL.move_L(clientid, g.target, g.b2_back_pos, 2)
+            time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b2_final_pos, 2)
 
-        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+    elif (targetPosition == 3):
+        mL.move_L(clientid, g.target, g.b3_final_pos, 2)
+        time.sleep(2)
+        sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
+        grip.closeGripper(clientid)
         time.sleep(1)
 
-    elif (targetPosition == 3):
-        time.sleep(2)
-        pass
+        for i in range(4):
+            mL.move_L(clientid, g.target, g.b3_back_pos, 2)
+            time.sleep(0.8)
+            mL.move_L(clientid, g.target, g.b3_final_pos, 2)
+
     elif (targetPosition == 4):
+        mL.move_L(clientid, g.target, g.b4_final_pos, 2)
         time.sleep(2)
-        pass
+        sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
+        grip.closeGripper(clientid)
+        time.sleep(1)
+
+        for i in range(4):
+            mL.move_L(clientid, g.target, g.b4_back_pos, 2)
+            time.sleep(0.8)
+            mL.move_L(clientid, g.target, g.b4_final_pos, 2)
+
+    sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+    grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
+    time.sleep(1)
+    mutualPositionAfterShake(clientid)
 
 def returnBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
-    b1_return_pos = [-1.725, 0.4, 0.552, 0, 0, 0]
-    b2_return_pos = [-1.725, 0.6, 0.552, 0, 0, 0]
 
     if (targetPosition == 1):
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
-        time.sleep(1)
         grip.closeGripper(clientid)
         time.sleep(1)
-        mL.move_L(clientid, g.target, g.b1_int_pos_4, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b1_int_pos_3, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b1_int_pos_2, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b1_int_pos, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, b1_return_pos, 2)
-        time.sleep(2)
+
+        mL.move_L(clientid, g.target, g.b1_return_pos, 2)
+        time.sleep(1.5)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
-        time.sleep(1)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
-        time.sleep(2)
-        mL.move_L(clientid, g.target, g.b2_int_pos_3, 2)
-        time.sleep(2)
+        time.sleep(1)
 
     elif (targetPosition == 2):
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
         time.sleep(3)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
-        time.sleep(1.5)
         grip.closeGripper(clientid)
         time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_5, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_4, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_3, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos_2, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, g.b2_int_pos, 2)
-        time.sleep(1)
-        mL.move_L(clientid, g.target, b2_return_pos, 2)
-        time.sleep(4)
+
+        mL.move_L(clientid, g.target, g.b2_return_pos, 2)
+        time.sleep(1.5)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
-        time.sleep(1)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
         time.sleep(1)
 
     elif (targetPosition == 3):
-        pass
+        mL.move_L(clientid, g.target, g.b3_final_pos, 2)
+        time.sleep(3)
+        sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
+        grip.closeGripper(clientid)
+        time.sleep(1)
+
+        mL.move_L(clientid, g.target, g.b3_return_pos, 2)
+        time.sleep(1.5)
+        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+        grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
+        time.sleep(1)
+
     elif (targetPosition == 4):
-        pass
+        mL.move_L(clientid, g.target, g.b4_final_pos, 2)
+        time.sleep(3)
+        sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
+        grip.closeGripper(clientid)
+        time.sleep(5)
+
+        mL.move_L(clientid, g.target, g.b4_return_pos, 2)
+        time.sleep(1.5)
+        sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
+        grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
+        time.sleep(1)
+    
+    mutualPositionAfterShake(clientid)
+
+                #These functions reset the arm to a 'mutual' position where it can move or shake other baskets
+
+def mutualPositionAfter2(clientid):
+    mutual_pos = [-1.56, 0.81, 0.725, 0, 0, 0]
+    mL.move_L(clientid, g.target, mutual_pos, 2)
+    time.sleep(2)
+
+def mutualPositionAfter3(clientid):
+    mutual_pos = [-1.56, 0.97, 0.725, 0, 0, 0]
+    mL.move_L(clientid, g.target, mutual_pos, 2)
+    time.sleep(2)
+
+def mutualPositionAfter4(clientid):
+    mutual_pos = [-1.56, 1.17, 0.725, 0, 0, 0]
+    mL.move_L(clientid, g.target, mutual_pos, 2)
+    time.sleep(2)
+
+def mutualPositionAfterShake(clientid):
+    mutual_pos = [-1.56, 1.1, 0.6, 0, 0, 0]
+    mutual_pos_2 = [-1.56, 1.1, 0.725, 0, 0, 0]
+    mL.move_L(clientid, g.target, mutual_pos, 2)
+    time.sleep(1)
+    mL.move_L(clientid, g.target, mutual_pos_2, 2)
+    time.sleep(1)

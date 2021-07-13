@@ -1,5 +1,5 @@
-## basketfunctions.py is a subfile of basket.py, and it contains the main 'chunk' of code that actually performs
-## the basket-moving operations, whereas basket.py is a cleaner version made for the sake of readability.
+# basketfunctions.py is a subfile of basket.py, and it contains the main 'chunk' of code that actually performs
+# the basket-moving operations, whereas basket.py is a cleaner version made for the sake of readability.
 
 import time
 import sim
@@ -9,6 +9,7 @@ import gripper as grip
 import globalvariables as g
 import checktimers
 
+#Moves the basket from platform -> table x
 def moveBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
 
@@ -138,12 +139,13 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
 
         mutualPositionAfter4(clientid)
 
+#Shakes a basket, located at table x
 def shakeBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
 
     if (targetPosition == 1):
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-        time.sleep(2.5)
+        time.sleep(4)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
@@ -194,6 +196,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
     time.sleep(1)
     mutualPositionAfterShake(clientid)
 
+#Returns basket to 'sink hanger' (in the scene), once basket has been shaken three times.
 def returnBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
 
@@ -218,7 +221,7 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
         time.sleep(1)
 
         mL.move_L(clientid, g.target, g.b2_return_pos, 2)
-        time.sleep(1.5)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
         time.sleep(1)
@@ -251,7 +254,7 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
     
     mutualPositionAfterShake(clientid)
 
-                #These functions reset the arm to a 'mutual' position where it can move or shake other baskets
+#These functions reset the arm to a 'mutual' position where it can move or shake other baskets
 
 def mutualPositionAfter2(clientid):
     mutual_pos = [-1.56, 0.81, 0.725, 0, 0, 0]

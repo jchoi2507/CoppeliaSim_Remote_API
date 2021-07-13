@@ -1,4 +1,4 @@
-## gripper.py contains all the gripper-related functions for other files to access and call upon.
+# gripper.py contains all the gripper-related functions for other files to access and call upon.
 
 import sim
 import time

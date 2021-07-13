@@ -1,3 +1,5 @@
+# The functions in checktimers.py are meant to be called in threads, to constantly check if a basket needs to be shaken.
+
 import time
 import globalvariables as g
 import basketfunctions as bf
@@ -8,7 +10,6 @@ def b1checkTimer(targetPosition, arrIndex):
         n = 0
 
         g.tableArr[n].endTimer()
-        time.sleep(1)
         elapsedTime = g.tableArr[n].endTime - g.tableArr[n].startTime
 
         if (elapsedTime >= 80.0):
@@ -27,7 +28,6 @@ def b2checkTimer(targetPosition, arrIndex):
         n = 1
 
         g.tableArr[n].endTimer()
-        time.sleep(1)
         elapsedTime = g.tableArr[n].endTime - g.tableArr[n].startTime
 
         if (elapsedTime >= 80.0):
@@ -46,7 +46,6 @@ def b3checkTimer(targetPosition, arrIndex):
         n = 2
 
         g.tableArr[n].endTimer()
-        time.sleep(1)
         elapsedTime = g.tableArr[n].endTime - g.tableArr[n].startTime
 
         if (elapsedTime >= 80.0):
@@ -65,7 +64,6 @@ def b4checkTimer(targetPosition, arrIndex):
         n = 3
 
         g.tableArr[n].endTimer()
-        time.sleep(1)
         elapsedTime = g.tableArr[n].endTime - g.tableArr[n].startTime
 
         if (elapsedTime >= 80.0):
@@ -78,7 +76,7 @@ def b4checkTimer(targetPosition, arrIndex):
                 g.tableArr[n].startTimer()
                 g.t4NumOfShakes = g.t4NumOfShakes + 1
 
-#Accounts for multiple baskets in the deep fryer system
+#Accounts for multiple baskets in the deep fryer system by delaying moving a basket until shaking is performed
 def delayIfNecessary():
     t1_left = 80.0 - (g.t1.endTime - g.t1.startTime)
     t2_left = 80.0 - (g.t2.endTime - g.t2.startTime)
@@ -93,3 +91,4 @@ def delayIfNecessary():
     
     elif (t3_left < 20.0):
         time.sleep(t3_left + 12.0)
+

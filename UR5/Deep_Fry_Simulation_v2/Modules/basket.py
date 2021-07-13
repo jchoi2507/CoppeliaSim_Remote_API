@@ -1,4 +1,4 @@
-## basket.py is the module that commands which basket to perform what action. It was created to provide more readability to the basketfunctions.py module.
+# basket.py is the module that commands which basket to perform what action. It was created to provide more readability to the basketfunctions.py module.
 
 import basketfunctions as bf
 import globalvariables as g

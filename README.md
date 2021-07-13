@@ -26,7 +26,7 @@ sensor has been set up in Coppelia)
 ### UR5 robotic arm (pick and place cuboids & pick and place deep fry baskets)
 - There are two industry simulations of the UR5 performing pick and place actions
    - Version 1 consists of basic pick and place of a cooking basket into a deep fryer
-   - Version 2 improves on the menu UI and backend scheduling. It also implements an infinite spawning mechanism
+   - Version 2 improves on the menu UI. It also implements backend scheduling, an infinite spawning mechanism, and displays queue timers.
       - External libraries used: tkinter (button interface), threading (multiprocessing), colorama (optional)
 * All joints are set to inverse kinematics + hybrid enabled mode
 * The gripper is the child object of the UR5_connection object. Contrary to online tutorials, the gripper can remain dynamically ENABLED as long as it's connected to the correct object. See: https://www.coppeliarobotics.com/helpFiles/en/designingDynamicSimulations.htm

@@ -1,5 +1,5 @@
-## globalvariables.py is the module that contains the global variables for other files to access.
-## Additionally, all initializations (clientID, handles, coordinates, etc, etc.) are configured here.
+# globalvariables.py is the module that contains the global variables for other files to access.
+# Additionally, all initializations (clientID, handles, coordinates, etc, etc.) are configured here.
 
 import sys
 import sim
@@ -16,6 +16,7 @@ class Table:
         self.empty = True #boolean empty or not
         self.startTime = 0 #time at shake start
         self.endTime = 0 #time at shake end
+        self.type = "" #type of chicken (bone or boneless)
 
     #Occupy method
     def occupy(self):
@@ -37,8 +38,9 @@ t1 = Table()
 t2 = Table()
 t3 = Table()
 t4 = Table()
-tableArr = [t1, t2, t3, t4] #Table array representing the four available spaces in the deep-fryers
+tableArr = [t1, t2, t3, t4] #Table array representing the four available spaces in the deep fryer system
 
+#Global variables representing how many shakes each basket has gone through
 t1NumOfShakes = 0
 t2NumOfShakes = 0
 t3NumOfShakes = 0
@@ -84,8 +86,8 @@ b4_back_pos = [-1.6, 1.3, 0.52, 0, 0, 0]
 
 #Basket-returning coordinates
 b1_return_pos = [-1.64, 0.88, 0.68, 0, 0, 0]
-b2_return_pos = [-1.64, 1.05, 0.68, 0, 0, 0]
-b3_return_pos = [-1.64, 1.2, 0.68, 0, 0, 0]
+b2_return_pos = [-1.64, 1, 0.68, 0, 0, 0]
+b3_return_pos = [-1.64, 1.16, 0.68, 0, 0, 0]
 b4_return_pos = [-1.64, 1.33, 0.68, 0, 0, 0]
 
 #Basket-moving coordinates for basket 1

@@ -22,7 +22,9 @@ def displayTimers():
         t4Display(b4shake_left)
 
         time.sleep(3) #Refreshes every 3 seconds
-        os.system('cls') #clearing the terminal console screen constantly so there's no need to scroll
+        ## Ensure the 'Emulate terminal in output console' option is checked (in PyCharm)
+        ## Change to os.system('cls') for WINDOWS
+        os.system('clear')
 
 #The below functions display, based on the table #, the following information:
     #Basket number identifier, type of chicken that is cooking, seconds until next shake, number of shakes left

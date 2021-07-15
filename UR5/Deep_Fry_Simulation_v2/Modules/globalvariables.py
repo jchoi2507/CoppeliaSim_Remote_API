@@ -88,7 +88,7 @@ b4_back_pos = [-1.6, 1.3, 0.52, 0, 0, 0]
 b1_return_pos = [-1.64, 0.88, 0.68, 0, 0, 0]
 b2_return_pos = [-1.64, 1, 0.68, 0, 0, 0]
 b3_return_pos = [-1.64, 1.16, 0.68, 0, 0, 0]
-b4_return_pos = [-1.64, 1.33, 0.68, 0, 0, 0]
+b4_return_pos = [-1.64, 1.27, 0.68, 0, 0, 0]
 
 #Basket-moving coordinates for basket 1
 b1_int_pos = [-1.63, 0.59, 0.725, 0, 0, 0]

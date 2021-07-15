@@ -1,9 +1,9 @@
 
-   - [UR5 Deep Fry Simulation Video v1](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
+   - 🤖 [UR5 Deep Fry Simulation Video v1](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
       - Features:
          - Performs moving, shaking, and returning of up to 2 baskets
          - Allows user to select which action to perform
-   - [UR5 Deep Fry Simulation Video v2](https://www.youtube.com/watch?v=x2EhPGrvZ0g)
+   - 🤖 [UR5 Deep Fry Simulation Video v2](https://www.youtube.com/watch?v=x2EhPGrvZ0g)
       - Improvements:
          - Handles up to 4 baskets
          - Faster simulation runtime, less lag

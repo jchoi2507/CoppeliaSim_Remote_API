@@ -14,8 +14,8 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
     errorCode, basketH = sim.simxGetObjectHandle(g.clientID, 'Basket' + arrIndex, sim.simx_opmode_blocking)
 
     #Moving to initial position
-    mL.move_L(clientid, g.target, g.initial_pos, 2)
-    time.sleep(4)
+    mL.move_L(clientid, g.target, g.initial_pos, 0.02)
+    time.sleep(2)
     sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
 
     #Closing gripper
@@ -33,7 +33,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b1_int_pos_4, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
@@ -64,7 +64,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b2_int_pos_6, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
@@ -83,11 +83,11 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b3_int_pos_2, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_3, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_4, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_5, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_6, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_int_pos_7, 2)
@@ -95,7 +95,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b3_int_pos_8, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b3_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
@@ -115,11 +115,11 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b4_int_pos_3, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_4, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_5, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_6, 2)
-        time.sleep(1.5)
+        time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_7, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_int_pos_8, 2)
@@ -127,7 +127,7 @@ def moveBasketFunc(clientid, targetPosition, arrIndex):
         mL.move_L(clientid, g.target, g.b4_int_pos_9, 2)
         time.sleep(1)
         mL.move_L(clientid, g.target, g.b4_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, -1, True, sim.simx_opmode_blocking)
         grip.gripperFunction(clientid, 0, g.j1, g.j2, g.p1, g.p2)
 
@@ -145,12 +145,12 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
 
     if (targetPosition == 1):
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-        time.sleep(4)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(4):
+        for i in range(6):
             mL.move_L(clientid, g.target, g.b1_back_pos, 2)
             time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b1_final_pos, 2)
@@ -162,7 +162,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(4):
+        for i in range(6):
             mL.move_L(clientid, g.target, g.b2_back_pos, 2)
             time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b2_final_pos, 2)
@@ -174,7 +174,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(4):
+        for i in range(6):
             mL.move_L(clientid, g.target, g.b3_back_pos, 2)
             time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b3_final_pos, 2)
@@ -186,7 +186,7 @@ def shakeBasketFunc(clientid, targetPosition, arrIndex):
         grip.closeGripper(clientid)
         time.sleep(1)
 
-        for i in range(4):
+        for i in range(6):
             mL.move_L(clientid, g.target, g.b4_back_pos, 2)
             time.sleep(0.8)
             mL.move_L(clientid, g.target, g.b4_final_pos, 2)
@@ -202,7 +202,7 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
 
     if (targetPosition == 1):
         mL.move_L(clientid, g.target, g.b1_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
@@ -215,7 +215,7 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
 
     elif (targetPosition == 2):
         mL.move_L(clientid, g.target, g.b2_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
@@ -228,7 +228,7 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
 
     elif (targetPosition == 3):
         mL.move_L(clientid, g.target, g.b3_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
         time.sleep(1)
@@ -241,10 +241,10 @@ def returnBasketFunc(clientid, targetPosition, arrIndex):
 
     elif (targetPosition == 4):
         mL.move_L(clientid, g.target, g.b4_final_pos, 2)
-        time.sleep(3)
+        time.sleep(2)
         sim.simxSetObjectParent(clientid, basketH, g.connector, True, sim.simx_opmode_blocking)
         grip.closeGripper(clientid)
-        time.sleep(5)
+        time.sleep(1)
 
         mL.move_L(clientid, g.target, g.b4_return_pos, 2)
         time.sleep(1.5)
@@ -278,3 +278,4 @@ def mutualPositionAfterShake(clientid):
     time.sleep(1)
     mL.move_L(clientid, g.target, mutual_pos_2, 2)
     time.sleep(1)
+

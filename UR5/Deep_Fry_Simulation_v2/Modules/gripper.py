@@ -40,5 +40,5 @@ def openGripperAtStart(clientid, j1, j2, p1, p2):
 #handle of the deep fry basket. This achieves the 'fake gripping' effect without actually gripping the object.
 def closeGripper(clientid):
     gripperFunction(clientid, 1, g.j1, g.j2, g.p1, g.p2)
-    time.sleep(0.8) #Alter the time value to account for differently sized objects to grip
+    time.sleep(0.15) #Alter the time value to account for differently sized objects to grip
     pauseGripper(clientid, g.j1, g.j2)

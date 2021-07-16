@@ -11,7 +11,7 @@
          - Backend scheduling (via threading) to determine shake time and total number of shakes
          - Improved menu UI and new timer UI that displays type of chicken and status
          - General improvements and additions in the CoppeliaSim scene
-   -  [UR5 Deep Fry Simulation Video v3](https://www.youtube.com/watch?v=B6eoovQDeW8)
+   -  🤖 [UR5 Deep Fry Simulation Video v3](https://www.youtube.com/watch?v=B6eoovQDeW8)
       - Improvements:
          - Speed control of robotic arm (range: 100 mm/s to 100,000 mm/s)
          - Improved menu UI, less clutter

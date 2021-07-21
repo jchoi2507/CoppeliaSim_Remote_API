@@ -1,4 +1,4 @@
-# Main executable file for version 2 of the deep fry simulation
+# Main executable file for version 3 of the deep fry simulation
 # By: Jacob Choi
 # 7/5/2021
 

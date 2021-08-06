@@ -21,7 +21,6 @@
 * Legacy remote API (not to be confused with b0 remote API) commands were used
 * Simulations in CoppeliaSim must already be running for remote API connection to work
 * sim.py, simConst.py, rempoteApi.dll must all be in workspace directory
-* Sphere object is there purely for the purpose of having simRemoteApi.start(19999) in its child script; without that command somewhere in the scene, remote API connection is not possible—the command is not included in the child script of the actual robotic arm for the sake of disabling the object's entire child script
 
 # 👨🏻‍💻 Simulated Robots
 
@@ -47,7 +46,10 @@ sensor has been set up in Coppelia)
 # ❓ For any confusion on...
 
 ### [Function parameters](https://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm)
-- Most, if not all, functions that involve manipulating an object in CoppeliaSim in any way (changing position, velocity, etc, etc.) require obtaining that object's 'handle' with: returnCode, handle = sim.simxGetObjectHandle(clientID, objectName, operationMode)
+- Most, if not all, functions that involve manipulating an object in CoppeliaSim in any way (changing position, velocity, etc, etc.) require obtaining that object's 'handle' with: 
+
+            returnCode, handle = sim.simxGetObjectHandle(clientID, objectName, operationMode)
+
    - The variable 'handle' is now usable for future function calls from the sim library that require an object's handle
 - All parameters for functions in the 'sim' (in earlier versions, this was 'vrep') library can be found at the official documentation link above
 - Pretty self-explanatory, only possible confusing parts involve the sim.simx_opmode_blocking/oneshot_wait/streaming
@@ -67,7 +69,10 @@ sensor has been set up in Coppelia)
    - There are online guides for CoppeliaSim remote API connection in MATLAB, C++, and Java
 - Certain conditions must be met for remote API connection to work, including:
    - Correct files in workplace directory
-   - Correct command in the child script of any object in the scene
+   - Correct command in the child script of any object in the scene (connected to port 19999)
+
+            simRemoteApi.start(19999)
+
    - Simulation already running before executing a Python program
 - A newer and more flexible method to utilize remote API was released, the BlueZero interface
    - The b0-based remote API connection utilizes a similar but different library and also requires a resolver to be running

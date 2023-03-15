@@ -1,19 +1,19 @@
 # 🤖 Preface
 
 - Please consider this repository a progression of my journey in robotic simulations, starting with messing around with the p3dx, to IK tip & target tracing with the UR10, and finally a more in-depth pick and place simulation of the UR5 in an industry setting
-   - [UR5 Deep Fry Simulation Video v1](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
+   - [UR5 Deep Fry Simulation Video v1 (*deleted in 2023*)](https://www.youtube.com/watch?v=A1o8x-pBRHQ)
       - Features:
          - Performs moving, shaking, and returning of up to 2 baskets through inverse kinematics implementation
          - Allows user to select which action to perform
          - Gripper control
-   - [UR5 Deep Fry Simulation Video v2](https://www.youtube.com/watch?v=x2EhPGrvZ0g)
+   - [UR5 Deep Fry Simulation Video v2 (*re-uploaded in 2023*)](https://www.youtube.com/watch?v=8ecLZFuWqnU)
       - Improvements:
          - Handles up to 4 baskets
          - Faster simulation runtime, less lag
          - Backend scheduling (via threading) to determine shake time and total number of shakes
          - Improved menu UI and new timer UI that displays type of chicken and status
          - General improvements and additions in the CoppeliaSim scene
-   - [UR5 Deep Fry Simulation Video v3](https://www.youtube.com/watch?v=B6eoovQDeW8)
+   - [UR5 Deep Fry Simulation Video v3 (*re-uploaded in 2023*)](https://www.youtube.com/watch?v=eW2IsmkFi24)
       - Improvements:
          - Speed control of robotic arm (range: 100 mm/s to 100,000 mm/s)
          - Improved menu UI, less clutter
